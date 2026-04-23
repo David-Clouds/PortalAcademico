@@ -4,6 +4,8 @@ using PortalAcademico.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using PortalAcademico.Models;
+using Microsoft.Extensions.Caching.Distributed;
+using System.Text.Json;
 
 namespace PortalAcademico.Controllers
 {
@@ -11,30 +13,74 @@ namespace PortalAcademico.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IDistributedCache _cache;
 
-        public CursosController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public CursosController(
+            ApplicationDbContext context,
+            UserManager<IdentityUser> userManager,
+            IDistributedCache cache)
         {
             _context = context;
             _userManager = userManager;
+            _cache = cache;
         }
-
 
         public async Task<IActionResult> Index(string nombre, int? minCreditos, int? maxCreditos)
         {
-            var cursos = _context.Cursos.Where(c => c.Activo);
+            var cacheKey = "cursos_activos";
 
-            if (!string.IsNullOrEmpty(nombre))
-                cursos = cursos.Where(c => c.Nombre.Contains(nombre));
+            string? cacheData = null;
 
-            if (minCreditos.HasValue)
-                cursos = cursos.Where(c => c.Creditos >= minCreditos);
+            try
+            {
+                cacheData = await _cache.GetStringAsync(cacheKey);
+            }
+            catch
+            {
+                cacheData = null;
+            }
 
-            if (maxCreditos.HasValue)
-                cursos = cursos.Where(c => c.Creditos <= maxCreditos);
+            List<Curso> cursos;
 
-            return View(await cursos.ToListAsync());
+            if (cacheData != null)
+            {
+                cursos = JsonSerializer.Deserialize<List<Curso>>(cacheData)!;
+            }
+            else
+            {
+                var query = _context.Cursos.Where(c => c.Activo);
+
+                if (!string.IsNullOrEmpty(nombre))
+                    query = query.Where(c => c.Nombre.Contains(nombre));
+
+                if (minCreditos.HasValue)
+                    query = query.Where(c => c.Creditos >= minCreditos);
+
+                if (maxCreditos.HasValue)
+                    query = query.Where(c => c.Creditos <= maxCreditos);
+
+                cursos = await query.ToListAsync();
+
+                var options = new DistributedCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(60)
+                };
+
+                try
+                {
+                    await _cache.SetStringAsync(
+                        cacheKey,
+                        JsonSerializer.Serialize(cursos),
+                        options);
+                }
+                catch
+                {
+                    // ignora error si Redis falla
+                }
+            }
+
+            return View(cursos);
         }
-
 
         public async Task<IActionResult> Detalle(int id)
         {
@@ -43,10 +89,12 @@ namespace PortalAcademico.Controllers
             if (curso == null)
                 return NotFound();
 
+            HttpContext.Session.SetString("UltimoCurso", curso.Nombre);
+            HttpContext.Session.SetInt32("UltimoCursoId", curso.Id);
+
             return View(curso);
         }
 
-     
         [Authorize]
         public async Task<IActionResult> Inscribirse(int id)
         {
@@ -57,7 +105,6 @@ namespace PortalAcademico.Controllers
 
             var userId = _userManager.GetUserId(User);
 
-         
             var existe = _context.Matriculas
                 .Any(m => m.CursoId == id && m.UsuarioId == userId);
 
@@ -67,7 +114,6 @@ namespace PortalAcademico.Controllers
                 return RedirectToAction("Detalle", new { id });
             }
 
-      
             var total = _context.Matriculas.Count(m => m.CursoId == id);
 
             if (total >= curso.CupoMaximo)
@@ -76,7 +122,6 @@ namespace PortalAcademico.Controllers
                 return RedirectToAction("Detalle", new { id });
             }
 
-            
             var conflictos = _context.Matriculas
                 .Include(m => m.Curso)
                 .Where(m => m.UsuarioId == userId)
@@ -91,11 +136,10 @@ namespace PortalAcademico.Controllers
                 return RedirectToAction("Detalle", new { id });
             }
 
-           
             var matricula = new Matricula
             {
                 CursoId = id,
-                UsuarioId = userId,
+                UsuarioId = userId!,
                 FechaRegistro = DateTime.Now,
                 Estado = "Pendiente"
             };
@@ -105,8 +149,6 @@ namespace PortalAcademico.Controllers
 
             TempData["Ok"] = "Inscripción exitosa";
             return RedirectToAction("Detalle", new { id });
-
         }
-        
     }
 }
