@@ -1,0 +1,37 @@
+@model List<PortalAcademico.Models.Curso>
+
+<h2>Catálogo de Cursos</h2>
+
+<form method="get">
+    <input type="text" name="nombre" placeholder="Buscar por nombre" />
+
+    <input type="number" name="minCreditos" placeholder="Min Créditos" />
+    <input type="number" name="maxCreditos" placeholder="Max Créditos" />
+
+    <button type="submit">Filtrar</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Créditos</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Codigo</td>
+                <td>@c.Nombre</td>
+                <td>@c.Creditos</td>
+                <td>
+                    <a href="/Cursos/Detalle/@c.Id">Ver Detalle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
