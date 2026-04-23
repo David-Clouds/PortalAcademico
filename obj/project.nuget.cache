@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/Bw+UxbddWE=",
+  "dgSpecHash": "gLIZQ/Fz6/Q=",
   "success": true,
   "projectFilePath": "C:\\Users\\Asus\\PortalAcademico\\PortalAcademico.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\8.0.26\\microsoft.entityframeworkcore.tools.8.0.26.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.1\\microsoft.extensions.caching.memory.8.0.1.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.caching.stackexchangeredis\\8.0.0\\microsoft.extensions.caching.stackexchangeredis.8.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.1\\microsoft.extensions.dependencyinjection.8.0.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
@@ -40,10 +41,12 @@
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\sqlitepclraw.core\\2.1.6\\sqlitepclraw.core.2.1.6.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.6\\sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.6\\sqlitepclraw.provider.e_sqlite3.2.1.6.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\stackexchange.redis\\2.6.122\\stackexchange.redis.2.6.122.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.composition\\6.0.0\\system.composition.6.0.0.nupkg.sha512",
@@ -58,10 +61,10 @@
     "C:\\Users\\Asus\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.24\\microsoft.netcore.app.ref.8.0.24.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.24\\microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.24\\microsoft.aspnetcore.app.ref.8.0.24.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.24\\microsoft.netcore.app.host.win-x64.8.0.24.nupkg.sha512"
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.24\\microsoft.netcore.app.host.win-x64.8.0.24.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.24\\microsoft.netcore.app.ref.8.0.24.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.24\\microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512"
   ],
   "logs": []
 }

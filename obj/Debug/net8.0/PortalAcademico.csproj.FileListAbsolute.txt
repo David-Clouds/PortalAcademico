@@ -145,3 +145,6 @@ C:\Users\Asus\PortalAcademico\obj\Debug\net8.0\PortalAcademico.pdb
 C:\Users\Asus\PortalAcademico\obj\Debug\net8.0\PortalAcademico.genruntimeconfig.cache
 C:\Users\Asus\PortalAcademico\obj\Debug\net8.0\ref\PortalAcademico.dll
 C:\Users\Asus\PortalAcademico\bin\Debug\net8.0\app.db
+C:\Users\Asus\PortalAcademico\bin\Debug\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\Asus\PortalAcademico\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\Asus\PortalAcademico\bin\Debug\net8.0\StackExchange.Redis.dll

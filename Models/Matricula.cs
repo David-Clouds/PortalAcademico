@@ -14,5 +14,6 @@ namespace PortalAcademico.Models
         public DateTime FechaRegistro { get; set; }
 
         public string Estado { get; set; } = "";
+
     }
 }
