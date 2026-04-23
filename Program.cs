@@ -43,6 +43,9 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
 
     if (!context.Cursos.Any())
     {
@@ -81,6 +84,22 @@ using (var scope = app.Services.CreateScope())
 
         context.SaveChanges();
     }
+
+
+    var roleExists = roleManager.RoleExistsAsync("Coordinador").Result;
+
+    if (!roleExists)
+    {
+        roleManager.CreateAsync(new IdentityRole("Coordinador")).Wait();
+    }
+
+
+    var user = userManager.FindByEmailAsync("usuario@gmail.com").Result;
+
+    if (user != null && !userManager.IsInRoleAsync(user, "Coordinador").Result)
+    {
+        userManager.AddToRoleAsync(user, "Coordinador").Wait();
+    }
 }
 
 
@@ -98,7 +117,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 
 app.UseSession();
 app.UseAuthentication();
