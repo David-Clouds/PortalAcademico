@@ -1,0 +1,22 @@
+@model List<PortalAcademico.Models.Curso>
+
+<h2>Panel Coordinador</h2>
+
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Código</th>
+        <th>Créditos</th>
+        <th>Estado</th>
+    </tr>
+
+@foreach (var c in Model)
+{
+    <tr>
+        <td>@c.Nombre</td>
+        <td>@c.Codigo</td>
+        <td>@c.Creditos</td>
+        <td>@c.Activo</td>
+    </tr>
+}
+</table>
