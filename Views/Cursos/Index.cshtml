@@ -1,18 +1,27 @@
 @model List<PortalAcademico.Models.Curso>
 
-<h2>Catálogo de Cursos</h2>
+<h2 class="mb-4 text-primary"> Catálogo de Cursos</h2>
 
-<form method="get">
-    <input type="text" name="nombre" placeholder="Buscar por nombre" />
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-4">
+        <input type="text" name="nombre" class="form-control" placeholder="Buscar por nombre" />
+    </div>
 
-    <input type="number" name="minCreditos" placeholder="Min Créditos" />
-    <input type="number" name="maxCreditos" placeholder="Max Créditos" />
+    <div class="col-md-2">
+        <input type="number" name="minCreditos" class="form-control" placeholder="Min Créditos" />
+    </div>
 
-    <button type="submit">Filtrar</button>
+    <div class="col-md-2">
+        <input type="number" name="maxCreditos" class="form-control" placeholder="Max Créditos" />
+    </div>
+
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+    </div>
 </form>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
         <tr>
             <th>Código</th>
             <th>Nombre</th>
@@ -22,16 +31,18 @@
     </thead>
 
     <tbody>
-        @foreach (var c in Model)
-        {
-            <tr>
-                <td>@c.Codigo</td>
-                <td>@c.Nombre</td>
-                <td>@c.Creditos</td>
-                <td>
-                    <a href="/Cursos/Detalle/@c.Id">Ver Detalle</a>
-                </td>
-            </tr>
-        }
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.Codigo</td>
+            <td>@c.Nombre</td>
+            <td>@c.Creditos</td>
+            <td>
+                <a class="btn btn-sm btn-info" href="/Cursos/Detalle/@c.Id">
+                    Ver Detalle
+                </a>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
